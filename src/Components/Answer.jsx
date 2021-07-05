@@ -1,22 +1,33 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+const useStyles = makeStyles(() => (
+  createStyles({
+    "button": {
+      boderColor: "#FFB549",
+      color: '#FFB549',
+      fontWeight: 600,
+      marginBottom: '8px',
+      "&:hover": {
+        background: '#FFB549',
+        color: '#fff'
+      }
+    }
+  })
+));
 
 
 const Answer = (props) => {
-  //const classes = useStyles();
+  // 上の useStyle という css を定義している関数を読み込む。
+  const classes = useStyles();
 
   return (
-    <Button variant="contained" color="primary">
+    <Button 
+    className={classes.button}
+      variant="outlined" onClick={() => props.select(props.content, props.nextId)}
+    >
       {props.content}
     </Button>
   )
